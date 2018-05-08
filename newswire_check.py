@@ -7,6 +7,7 @@ from requests_html import HTML, HTMLSession
 from mysms import textmyself
 
 JSON_URL = 'http://www.rockstargames.com/newswire/get-posts.json?page=1'
+
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 LOG_FILE = f'{PACKAGE_DIR}/newswire_check.log'
 JSON_FILE = f'{PACKAGE_DIR}/newswire.json'
@@ -26,7 +27,7 @@ def get_last_title(j):
     return last_title
 
 
-def new_title(title):
+def title_is_new(title):
     """Open and compare title to last saved title. Return boolean if updated"""
     try:
         with open(JSON_FILE, 'r') as f:
@@ -46,7 +47,7 @@ def main():
     session = HTMLSession()
     json_res = session.get(JSON_URL).json()
     title = get_last_title(json_res)
-    if new_title(title):
+    if title_is_new(title):
         textmyself(title)
         logger.info('Updated: ' + title)
     else:

@@ -9,7 +9,7 @@ lxml==4.2.1
 mysms==1.0
 parse==1.8.2
 pyee==5.0.0
-PyJWT==1.6.1
+PyJWT==2.4.0
 pyppeteer==0.0.17
 pyquery==1.4.0
 PySocks==1.6.8
